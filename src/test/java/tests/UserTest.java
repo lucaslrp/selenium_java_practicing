@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import support.Generator;
 import support.Screenshots;
+import support.Web;
 
 import static org.junit.Assert.*;
 
@@ -33,12 +34,14 @@ public class UserTest {
     @Before
     public void setUp() {
         
-        System.setProperty("webdrive.chrome.driver", "C:\\Users\\Drivers-automation\\chromedriver.exe");
+        /*System.setProperty("webdrive.chrome.driver", "C:\\Users\\Drivers-automation\\chromedriver.exe");
         nav = new ChromeDriver();
         nav.manage().window().maximize();
         nav.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
-        nav.get("https://automationteststore.com/");
+        nav.get("https://automationteststore.com/");*/
+
+        nav = Web.createChrome();
     }
 
     @Test
@@ -86,17 +89,18 @@ public class UserTest {
 
         // click in Login
         // nav.findElement(By.linkText("Login or register")).click();
+        
         WebElement loginAndRegister = nav.findElement(By.linkText("Login or register"));
-        loginAndRegister.click();
+        loginAndRegister.click(); // criado PO
 
         // write login and password in Login Form
-        WebElement loginForm = nav.findElement(By.id("loginFrm"));
+        WebElement loginForm = nav.findElement(By.id("loginFrm")); 
 
-        loginForm.findElement(By.name("loginname")).sendKeys("testtester");
-        loginForm.findElement(By.name("password")).sendKeys("testtester12345");
+        loginForm.findElement(By.name("loginname")).sendKeys("testtester"); //criado PO
+        loginForm.findElement(By.name("password")).sendKeys("testtester12345"); //criado PO
 
         // click login in Login Form
-        loginForm.findElement(By.xpath("//button[@title='Login']")).click();
+        loginForm.findElement(By.xpath("//button[@title='Login']")).click(); //criado PO
 
         // validation
         //// div[@class='menu_text' and contains(text(), 'Welcome back')]
